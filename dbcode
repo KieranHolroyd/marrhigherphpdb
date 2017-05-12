@@ -1,0 +1,24 @@
+You will find the meekrodb class file in the pupil shared area in the directory on the whiteboard.
+Copy it into your web directory on the wamp server and add this code into a file called 'displayresults.php'
+
+<?php include 'meekrodb.2.3.class.php';
+
+DB::$host       = 'marr-wamp';
+DB::$user       = 'YOURUSER';
+DB::$password   = 'YOURPASSWORD';
+DB::$dbName     = 'higher_readingdb';
+
+$result = DB::query("SELECT * FROM displayresults ORDER BY id DESC");
+$result_tree = array();
+
+foreach ($result as $result) {
+  $result_tree[$result['r1']][]=$result;
+}
+?>
+
+You will then need to add in 2 foreach statements
+
+<?php foreach ($result_tree as $result_group => $result_list) { ?>
+<?php foreach ($result_list as $result) { ?>
+
+
